@@ -1,0 +1,102 @@
+{
+    "AppendData": {
+        "Id": "1234",
+        "Name": "物联网实训室",
+        "CollegeName": "电子与信息工程学院",
+        "LayerName": "二楼",
+        "ClassNo": "A213",
+        "SonserList": [
+            {
+                "Id": "18",
+                "Name": "照明灯",
+                "Online": "OnLine",
+                "State": "关闭",
+                "IsOpen": false,
+                "Type": 1
+            },
+            {
+                "Id": "15",
+                "Name": "门",
+                "Online": "OnLine",
+                "State": "打开",
+                "IsOpen": true,
+                "Type": 2
+            },
+            {
+                "Id": "11",
+                "Name": "窗帘",
+                "Online": "OnLine",
+                "State": "关闭",
+                "IsOpen": false,
+                "Type": 3
+            },
+            {
+                "Id": "a",
+                "Name": "窗户",
+                "Online": "OnLine",
+                "State": "关闭",
+                "IsOpen": false,
+                "Type": 4
+            },
+            {
+                "Id": "10",
+                "Name": "窗户",
+                "Online": "OnLine",
+                "State": "关闭",
+                "IsOpen": false,
+                "Type": 4
+            },
+            {
+                "Id": "13",
+                "Name": "人体",
+                "Online": "OnLine",
+                "State": "关闭",
+                "IsOpen": false,
+                "Type": 6
+            },
+            {
+                "value": "29.9℃",
+                "Id": "e",
+                "Name": "温度",
+                "Online": "OnLine",
+                "State": null,
+                "IsOpen": false,
+                "Type": 9
+            },
+            {
+                "value": "70.6%",
+                "Id": "e",
+                "Name": "湿度",
+                "Online": "OnLine",
+                "State": null,
+                "IsOpen": false,
+                "Type": 9
+            },
+            {
+                "value": "39.15µg/m³",
+                "Id": "19",
+                "Name": "PM2.5",
+                "Online": "OnLine",
+                "State": null,
+                "IsOpen": false,
+                "Type": 11
+            },
+            {
+                "value": "26℃",
+                "Id": "16",
+                "Name": "空调",
+                "Online": null,
+                "State": "关闭",
+                "IsOpen": false,
+                "Type": 12
+            }
+        ]
+    },
+    "ExceptionCount": 0,
+    "Count": 10,
+    "NormalCount": 10,
+    "Status": true,
+    "ResultCode": 0,
+    "Message": "查询设备信息成功",
+    "ErrorData": null
+}
