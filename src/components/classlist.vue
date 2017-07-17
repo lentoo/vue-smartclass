@@ -1,24 +1,33 @@
 <template>
     <div>
-            <div id="class-list" v-loading="Logging" element-loading-text="拼命加载中">
-                <h1 class=".h40">
-                    教室列表
-                </h1>
-                <div class="class-body">
-                    <el-row>
-                        <el-tree :data="Collegess" :props="defaultProps" :accordion="true" @node-click="handleNodeClick">
-                        </el-tree>
-                    </el-row>
-                </div>
+        <div id="class-list" v-loading="Logging" element-loading-text="拼命加载中">
+            <h1 class=".h40">
+                教室列表
+            </h1>
+            <div class="class-body">
+
+                <el-row>
+                    <el-tree :data="Collegess" :props="defaultProps" :accordion="true" @node-click="handleNodeClick" :filter-node-method="filterNode"
+                        ref="tree2">
+                    </el-tree>
+                </el-row>
             </div>
+        </div>
     </div>
 </template>
 <script>
     import axios from 'axios'
     import config from '../js/config.js'
+    import { mapGetters } from 'vuex'
     export default {
-        created() {
+        mounted() {
             this.request();
+        },
+        computed: mapGetters(['filtersClass']),
+        watch: {
+            filtersClass(val) {
+                this.$refs.tree2.filter(val);
+            }
         },
         data() {
             return {
@@ -34,16 +43,16 @@
                     label: 'Name'
                 },
                 Collegess: []
-            };
-
+            }
         },
         methods: {
-            goClass() {
-                this.$router.push({ path: '/classList/classDetail' })   //路由跳转
+            filterNode(value, data) {
+                if (!value) return true;
+                return data.Name.indexOf(value) !== -1;
             },
             request() {
                 this.Logging = true;
-                axios.get(//'/data.json'
+                this.$http.get(//'/data.json'
                     config.SearchAllClass,
                     {
                         params: {
@@ -61,10 +70,8 @@
             },
             Init(data) {
                 var list = [];
-                //  console.log(data[0].Floors[0])
                 for (var i in data) {
                     var floors = [];
-                    //console.log(data[i].Floors[0].ClassRooms)
                     for (var floor in data[i].Floors) {
                         var rooms = [];
                         for (var key in (data[i].Floors[floor].ClassRooms)) {

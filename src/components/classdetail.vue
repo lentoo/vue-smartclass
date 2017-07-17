@@ -34,7 +34,7 @@
                                                 <el-switch v-model="item.IsOpen" on-text="打开" off-text="关闭" on-color="#13ce66" off-color="#ff4949" @change="change(ClassId,item)"
                                                     v-if="item.Type<=5">
                                                 </el-switch>
-                                                <el-tag type="primary" v-if="item.Type>5">{{item.IsOpen}}</el-tag>
+                                                <el-tag type="primary" v-if="item.Type>5">{{item.IsOpen?'正常':'异常'}}</el-tag>
                                             </el-col>
                                         </el-row>
                                     </div>
@@ -44,15 +44,15 @@
                         <el-collapse-item title="环境信息" name="2">
                             <el-col :span="5" v-for="(item, index) in Analog" :key="index" :offset="index%4==0?0:index > 0 ? 1 : 0" class="text item">
                                 <el-card class="box-card">
-                                    <!-- <div v-for="o in 4" :key="o"> -->
                                     <div class="text item">
                                         <span>设备名称：</span>
                                         <el-tag type="primary">{{item.Name}}</el-tag>
+                                          <span>状态：</span>
+                                        <el-tag :type="item.Online=='OnLine'?'success':'danger'">{{item.Online}}</el-tag>
                                     </div>
                                     <div><span>设备信息：</span>
                                         <el-tag type="primary">{{item.value}}</el-tag>
                                     </div>
-                                    <!-- </div> -->
                                 </el-card>
                             </el-col>
                         </el-collapse-item>
@@ -63,10 +63,7 @@
     </div>
 </template>
 <script>
-    import axios from 'axios'
     import config from '../js/config.js'
-    import http from '../js/http.js'
-    var $http = http.$http;
     export default {
         created() {
             this.request()
@@ -92,8 +89,7 @@
                 var token = localStorage.token;
                 this.token = token;
                 var classId = this.$route.params.classId;
-                console.log(classId);
-                axios.get(config.SearchAll
+                this.$http.get(config.SearchAll
                     , {
                         params: {
                             classroom: classId,
@@ -109,14 +105,13 @@
                             this.Logging = false;
                             this.Init(this.SonserList);
                         } else {
-                            console.log(22);
                             this.$message({
                                 message: res.data.Message,
                                 showClose: true,
                                 duration: 1500,
                                 type: 'error'
                             });
-                            this.Logging=false;
+                            this.Logging = false;
                         }
                     }.bind(this)).catch(function (err) {
                         this.$message({
@@ -128,10 +123,11 @@
                     }.bind(this));
             },
             change(ClassId, item) {     //改变传感器状态
+                console.log(1);
                 var token = localStorage.token;
                 var url = config.Apis[parseInt(item.Type)];
                 var onoff = item.IsOpen ? 'close' : 'open';
-                axios.get(url, {
+                this.$http.get(url, {
                     params: {
                         classroom: ClassId,
                         nodeAdd: item.Id,
