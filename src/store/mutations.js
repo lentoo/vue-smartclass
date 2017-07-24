@@ -1,12 +1,20 @@
 import getters from './getter'
 const state = {
-    classFilter: 'abc'
+    classFilter: '',
+    collegeName: '',
+    layerName: ''
 }
 const mutations = {
-    classFilter(state,payload){
-        state.classFilter=payload;
+    classFilter(state, payload) {
+        state.classFilter = payload;
+    },
+    collegeName(state, payload) {
+        state.collegeName = payload;
+    },
+    layerName(state, payload) {
+        state.layerName = payload;
     }
-}
+}   
 export default {
     state,
     mutations,

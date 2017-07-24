@@ -5,7 +5,6 @@
                 教室列表
             </h1>
             <div class="class-body">
-
                 <el-row>
                     <el-tree :data="Collegess" :props="defaultProps" :accordion="true" @node-click="handleNodeClick" :filter-node-method="filterNode"
                         ref="tree2">
@@ -18,7 +17,7 @@
 <script>
     import axios from 'axios'
     import config from '../js/config.js'
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
     export default {
         mounted() {
             this.request();
@@ -31,8 +30,6 @@
         },
         data() {
             return {
-                currentDate: new Date().toLocaleString(),
-                activeNames: 'abc',
                 jsondata: {},
                 Colleges: [],
                 Name: '',
@@ -46,21 +43,19 @@
             }
         },
         methods: {
+            // 树节点过滤
             filterNode(value, data) {
                 if (!value) return true;
                 return data.Name.indexOf(value) !== -1;
             },
+            //请求数据
             request() {
                 this.Logging = true;
-                this.$http.get(//'/data.json'
+                var params = 'Access=' + localStorage.token
+                this.$http.post(
                     config.SearchAllClass,
-                    {
-                        params: {
-                            Access: localStorage.token
-                        }
-                    }
+                    params
                 ).then(function (res) {
-                    // console.log(res.data)
                     this.Logging = false;
                     this.Colleges = res.data;
                     this.Collegess = this.Init(this.Colleges);
@@ -68,6 +63,7 @@
                     console.log(err);
                 })
             },
+            //初始化树节点数据
             Init(data) {
                 var list = [];
                 for (var i in data) {
@@ -83,10 +79,14 @@
                 }
                 return list;
             },
+            //树节点点击事件
             handleNodeClick(data) {
                 if (data.ClassNo != null) { //点击的是不是具体教室
-                    console.log(data);
-                    this.$router.push({ path: '/classList/classDetail/' + data.Id })
+                    this.$store.commit('collegeName', data.CollegeName);
+                    this.$store.commit('layerName', data.LayerName);
+                    this.$router.push({
+                        path: '/classList/classDetail/' + data.Id,
+                    })
                 }
             }
         }

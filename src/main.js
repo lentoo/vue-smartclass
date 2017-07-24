@@ -3,11 +3,13 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import VueRouter from 'vue-router'
 import axios from 'axios'
-import App from './App.vue'
-import RouterConfig from './js/router.config'
 import store from './store/'
 
-axios.defaults.timeout = 5000; //响应时间
+import RouterConfig from './js/router.config'
+import App from './App.vue'
+import AutoFocus from './js/autoFocus'
+Vue.use(AutoFocus)
+// axios.defaults.timeout = 5000; //响应时间
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'; //配置请求头
 
 axios.interceptors.request.use((config) => {

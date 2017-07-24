@@ -6,7 +6,10 @@ const SearchAllClass = Host + '/Classes/SearchAllClass'
 const Door = Host + '/Home/SetDoor'
 const Curtain = Host + '/Home/SetCurtain'
 const Window = Host + '/Home/SetWindow'
-const Apis = ['', Lamp, Door,Curtain,Window]
+const ControlBuildingEquipment = Host + '/Home/ControlBuildingEquipment'
+const ControlFloorEquipment = Host+'/Home/ControlFloorEquipment'
+const SearchBuildingAllRoomEquipmentInfo = Host+'/Home/SearchBuildingAllRoomEquipmentInfo'
+const Apis = ['', Lamp, Door, Curtain, Window]
 const Imgs = ['', 'Lamp.jpg', 'door.jpg', 'curtain.jpg', 'window.jpg', '', 'rthw.jpg', 'co2.png']
 export default {
     Host,
@@ -16,5 +19,8 @@ export default {
     Door,
     Apis,
     Imgs,
-    SearchAllClass
+    SearchAllClass,
+    ControlBuildingEquipment,
+    ControlFloorEquipment,
+    SearchBuildingAllRoomEquipmentInfo
 }

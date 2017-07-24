@@ -1,9 +1,20 @@
 export default {
-    classFilter:({
+    classFilter: ({
         commit,
         payload
-    })=>{   
-        console.log(payload);
+    }) => {
         commit('classFilter')
+    },
+    collegeName: ({
+        commit,
+        payload
+    }) => {
+        commit('collegeName')
+    },
+    layerName: ({
+        commit,
+        payload
+    }) => {
+        commit('layerName')
     }
 }

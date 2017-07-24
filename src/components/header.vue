@@ -10,7 +10,7 @@
                 <div>
                     <h2>
                         <form>
-                            <el-input placeholder="请输入教室名称" icon="search" v-model="value">
+                            <el-input placeholder="请输入教室名称" icon="search" v-model="value" @keyup.submite.prevent="submite()">
                             </el-input>
                         </form>
                     </h2>
@@ -42,6 +42,9 @@
         methods: {
             goLogin() {
                 this.$router.push({ path: '/Login' });
+            },
+            submite() {
+                console.log(12);
             }
         },
         computed: mapGetters(['filtersClass'])

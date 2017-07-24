@@ -7,94 +7,136 @@
         "ClassNo": "A213",
         "SonserList": [
             {
+                "IsOpen": false,
                 "Id": "18",
                 "Name": "照明灯",
                 "Online": "OnLine",
                 "State": "关闭",
-                "IsOpen": false,
-                "Type": 1
+                "Type": 1,
+                "Controllable": true
             },
             {
+                "IsOpen": true,
+                "Id": "1a",
+                "Name": "照明灯",
+                "Online": "OffLine",
+                "State": "不在线",
+                "Type": 1,
+                "Controllable": true
+            },
+            {
+                "IsOpen": false,
                 "Id": "15",
                 "Name": "门",
                 "Online": "OnLine",
-                "State": "打开",
-                "IsOpen": true,
-                "Type": 2
+                "State": "关闭",
+                "Type": 2,
+                "Controllable": true
             },
             {
+                "IsOpen": true,
                 "Id": "11",
                 "Name": "窗帘",
                 "Online": "OnLine",
-                "State": "关闭",
-                "IsOpen": false,
-                "Type": 3
+                "State": "打开",
+                "Type": 3,
+                "Controllable": true
             },
             {
+                "IsOpen": false,
                 "Id": "a",
                 "Name": "窗户",
                 "Online": "OnLine",
                 "State": "关闭",
-                "IsOpen": false,
-                "Type": 4
+                "Type": 4,
+                "Controllable": true
             },
             {
+                "IsOpen": false,
                 "Id": "10",
                 "Name": "窗户",
                 "Online": "OnLine",
                 "State": "关闭",
-                "IsOpen": false,
-                "Type": 4
+                "Type": 4,
+                "Controllable": true
             },
             {
+                "IsOpen": false,
                 "Id": "13",
                 "Name": "人体",
                 "Online": "OnLine",
                 "State": "关闭",
-                "IsOpen": false,
-                "Type": 6
+                "Type": 6,
+                "Controllable": false
             },
             {
-                "value": "29.9℃",
+                "IsOpen": true,
+                "Id": "12",
+                "Name": "气体",
+                "Online": "OnLine",
+                "State": "7,无此状态码",
+                "Type": 7,
+                "Controllable": false
+            },
+            {
+                "value": "28.1℃",
+                "Id": "d",
+                "Name": "温度",
+                "Online": "OnLine",
+                "State": "打开",
+                "Type": 9,
+                "Controllable": false
+            },
+            {
+                "value": "68.2 %",
+                "Id": "d",
+                "Name": "湿度",
+                "Online": "OnLine",
+                "State": "打开",
+                "Type": 9,
+                "Controllable": false
+            },
+            {
+                "value": "28℃",
                 "Id": "e",
                 "Name": "温度",
                 "Online": "OnLine",
-                "State": null,
-                "IsOpen": false,
-                "Type": 9
+                "State": "打开",
+                "Type": 9,
+                "Controllable": false
             },
             {
-                "value": "70.6%",
+                "value": "65.6 %",
                 "Id": "e",
                 "Name": "湿度",
                 "Online": "OnLine",
-                "State": null,
-                "IsOpen": false,
-                "Type": 9
+                "State": "打开",
+                "Type": 9,
+                "Controllable": false
             },
             {
-                "value": "39.15µg/m³",
+                "value": "28.74 µg/m³",
                 "Id": "19",
                 "Name": "PM2.5",
                 "Online": "OnLine",
-                "State": null,
-                "IsOpen": false,
-                "Type": 11
+                "State": "打开",
+                "Type": 11,
+                "Controllable": false
             },
             {
-                "value": "26℃",
+                "value": "26 ℃",
                 "Id": "16",
                 "Name": "空调",
-                "Online": null,
+                "Online": "OnLine",
                 "State": "关闭",
-                "IsOpen": false,
-                "Type": 12
+                "Type": 12,
+                "Controllable": true
             }
         ]
     },
-    "ExceptionCount": 0,
-    "Count": 10,
-    "NormalCount": 10,
+    "ExceptionCount": 1,
+    "Count": 14,
+    "NormalCount": 13,
     "Status": true,
     "ResultCode": 0,
     "Message": "查询设备信息成功",

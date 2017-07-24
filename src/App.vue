@@ -8,9 +8,9 @@
         </el-col>
         <el-col :span="21">
           <transition name="slide-down">
-            <keep-alive>
+            <!-- <keep-alive> -->
               <router-view></router-view>
-            </keep-alive>
+            <!-- </keep-alive> -->
           </transition>
         </el-col>
       </el-row>
@@ -80,14 +80,16 @@
 
   .slide-down-enter-active,
   .slide-down-leave-active {
-    opacity: .5;
-    transition: .5s all ease-in;    
-    transform: translate3d(1000px, 0, 0);
+    opacity: .2;
+    transition: .3s all ease-in;
+    transform: translateY(500px);
+    /* transform: rotateY(180deg) */
   }
 
   .slide-down-enter,
   .slide-down-leave {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translateY(0);
+    /* transform: rotateY(0) */
   }
 </style>

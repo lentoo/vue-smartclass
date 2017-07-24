@@ -1,0 +1,64 @@
+[
+    {
+        "AppendData": {
+            "Id": "1234",
+            "Name": "物联网实训室",
+            "CollegeName": null,
+            "LayerName": null,
+            "ClassNo": "A213",
+            "SonserList": [
+                {
+                    "IsOpen": true,
+                    "Id": "11",
+                    "Name": "窗帘",
+                    "Online": "OffLine",
+                    "State": "不在线",
+                    "Type": 3,
+                    "Controllable": true
+                },
+                {
+                    "IsOpen": true,
+                    "Id": "13",
+                    "Name": "人体",
+                    "Online": "OffLine",
+                    "State": "不在线",
+                    "Type": 6,
+                    "Controllable": false
+                },
+                {
+                    "value": "16℃",
+                    "Id": "16",
+                    "Name": "空调",
+                    "Online": "OffLine",
+                    "State": "关闭",
+                    "Type": 12,
+                    "Controllable": true
+                }
+            ]
+        },
+        "ExceptionCount": 3,
+        "Count": 13,
+        "NormalCount": 10,
+        "Status": true,
+        "ResultCode": 0,
+        "Message": "查询设备信息成功",
+        "ErrorData": null
+    },
+    {
+        "AppendData": {
+            "Id": "1235",
+            "Name": "嵌入式办公室",
+            "CollegeName": null,
+            "LayerName": null,
+            "ClassNo": "A204",
+            "SonserList": []
+        },
+        "ExceptionCount": 0,
+        "Count": 3,
+        "NormalCount": 3,
+        "Status": true,
+        "ResultCode": 0,
+        "Message": "查询设备信息成功",
+        "ErrorData": null
+    }
+]
