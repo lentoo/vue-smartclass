@@ -13,8 +13,13 @@ const mutations = {
     },
     layerName(state, payload) {
         state.layerName = payload;
+    },
+    flashName(state, payload) {
+        console.log(payload)
+        state.collegeName = payload;
+        // state.layerName = payload.layerName;
     }
-}   
+}
 export default {
     state,
     mutations,

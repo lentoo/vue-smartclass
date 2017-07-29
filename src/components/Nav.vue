@@ -27,16 +27,19 @@
         },
         data() {
             return {
+                //开启路由模式
                 startRouter: true,
+                //当前的url路径
                 currentServer: ''
             }
         },
         methods: {
             request() {
+                //获取当前的url路径
                 this.currentServer = this.$route.path;
             }
         },
-        watch: {
+        watch: {    //监测 $route 状态
             '$route': 'request'
         }
     }

@@ -9,61 +9,145 @@
                 </el-breadcrumb>
             </h1>
             <el-row class="detail-body">
-                <el-row>
-                    <el-collapse accordion v-model="activeNames">
-                        <el-collapse-item title="设备列表" name="1">
-                            <el-col :span="8" v-for="(item, index) in SonserList" :key="index">
-                                <el-card :body-style="{ padding: '15px 15px 0 15px'}" style="margin-bottom:5px;padding-bottom:0;height:114px;margin-right:10px;">
-                                    <el-row>
-                                        <el-col :span="5">
-                                            <img :src="'/src/assets/images/'+Imgs[item.Type]" class="image" />
-                                        </el-col>
-                                        <el-col :span="18" :offset="1">
+                <el-collapse accordion v-model="activeNames">
+                    <el-collapse-item title="设备列表" name="1">
+                        <el-col :span="8" v-for="(item, index) in SonserList" :key="index">
+                            <el-card :body-style="{ padding: '15px 15px 0 15px'}" style="margin-bottom:5px;padding-bottom:0;height:114px;margin-right:10px;">
+                                <el-row>
+                                    <el-col :span="5">
+                                        <!-- <img :src="'/src/assets/images/'+Imgs[item.Type]" class="image" /> -->
+                                        <img :src="'/src/assets/images/'+(Imgs[item.Type]!=null?Imgs[item.Type]:'default.jpg')" class="image" />
+                                    </el-col>
+                                    <el-col :span="18" :offset="1">
+                                        <el-row>
+                                            <el-col :span="12"><span>在线状态：</span>
+                                                <el-tag :type="item.Online=='OnLine'?'success':'danger'">{{item.Online}}</el-tag>
+                                            </el-col>
+                                            <el-col :span="12"> <span>编号：</span>
+                                                <el-tag type="primary">{{item.Id}}</el-tag>
+                                            </el-col>
+                                        </el-row>
+                                        <el-row class="switch">
+                                            <el-col :span="12"><span>设备名称：</span>
+                                                <el-tag type="primary">{{item.Name}}</el-tag>
+                                            </el-col>
+                                            <el-col :span="12">
+                                                <span>状态：</span>
+                                                <el-tag type="primary" v-if="item.value!=null">
+                                                    {{item.value}}
+                                                </el-tag>
+                                                <el-switch v-model="item.IsOpen" on-text="打开" off-text="关闭" on-color="#13ce66" off-color="#ff4949" @change="change(ClassId,item)"
+                                                    v-if="(item.Type<=5 || item.Type==12) && (item.Online=='OnLine')">
+                                                </el-switch>
+                                                <el-tag type="primary" v-if="item.Type>5 && item.Type<8">{{item.IsOpen?'正常':'异常'}}</el-tag>
+                                            </el-col>
+                                        </el-row>
+                                    </el-col>
+                                </el-row>
+                            </el-card>
+                        </el-col>
+                    </el-collapse-item>
+                    <el-collapse-item title="异常设备" name="2">
+                        <p v-if="SonserExcList.length==0">
+                            <el-alert title="" description="当前该教室没有异常设备">
+                            </el-alert>
+                        </p>
+                        <el-col :span="8" v-for="(item, index) in SonserExcList" :key="index">
+                            <el-card :body-style="{ padding: '15px 15px 0 15px'}" style="margin-bottom:5px;padding-bottom:0;height:114px;margin-right:10px;">
+                                <el-row>
+                                    <el-col :span="5">
+                                        <img :src="'/src/assets/images/'+Imgs[item.Type]!=null?Imgs[item.Type]:'default.jpg'" class="image" />
+                                        <!-- <img :src="'/src/assets/images/default.jpg'" class="image" /> -->
+                                    </el-col>
+                                    <el-col :span="18" :offset="1">
+                                        <el-row>
+                                            <el-col :span="12"><span>在线状态：</span>
+                                                <el-tag :type="item.Online=='OnLine'?'success':'danger'">{{item.Online}}</el-tag>
+                                            </el-col>
+                                            <el-col :span="12"> <span>编号：</span>
+                                                <el-tag type="primary">{{item.Id}}</el-tag>
+                                            </el-col>
+                                        </el-row>
+                                        <el-row class="switch">
+                                            <el-col :span="12"><span>设备名称：</span>
+                                                <el-tag type="primary">{{item.Name}}</el-tag>
+                                            </el-col>
+                                            <el-col :span="12">
+                                                <span>状态：</span>
+                                                <el-tag type="primary" v-if="item.Value!=null">
+                                                    {{item.Value}}
+                                                </el-tag>
+                                                <el-tag type="primary" v-if="item.Type>5&&item.Type<8">{{item.IsOpen?'正常':'异常'}}</el-tag>
+                                            </el-col>
+                                        </el-row>
+                                    </el-col>
+                                </el-row>
+                            </el-card>
+                        </el-col>
+                    </el-collapse-item>
+                    <el-collapse-item title="摄像头信息" name="3">
+                        <el-row>
+                            <el-col :span="5">
+                                <el-row>
+                                    <el-card :body-style="{ padding: '10px' }">
+                                        <div class="body">
+                                            <object id="remote" name="remote" classid="clsid:1E125331-B4E3-4EE3-B3C1-24AD1A3E5DEB" WIDTH="320" HEIGHT="311">
+                                                <strong style="color:red; font-size:20px"> 未安装插件，请<a href='http://cn-download.eyecloud.so/download/application/ipcamax.exe'>点击这里</a>下载安装</strong>
+                                            </object>
+                                        </div>
+                                        <div style="padding: 10px;">
                                             <el-row>
-                                                <el-col :span="12"><span>在线状态：</span>
-                                                    <el-tag :type="item.Online=='OnLine'?'success':'danger'">{{item.Online}}</el-tag>
-                                                </el-col>
-                                                <el-col :span="12"> <span>编号：</span>
-                                                    <el-tag type="primary">{{item.Id}}</el-tag>
-                                                </el-col>
+                                                <div @mousedown="setAction(remote1,0,31)" @mouseup="setAction(remote1,-1,0)" style="float:left;margin-right: 20px">
+                                                    <el-button type="info" size="mini" class="button">向上</el-button>
+                                                </div>
+                                                <div @mousedown="setAction(remote1,3,31)" @mouseup="setAction(remote1,-1,0)" style="float:left;margin-right: 20px">
+                                                    <el-button type="info" size="mini" class="button">向下</el-button>
+                                                </div>
+                                                <div @mousedown="setAction(remote1,1,31)" @mouseup="setAction(remote1,-1,0)" style="float:left;margin-right: 20px">
+                                                    <el-button type="info" size="mini" class="button">向左</el-button>
+                                                </div>
+
+                                                <div @mousedown="setAction(remote1,2,31)" @mouseup="setAction(remote1,-1,0)" style="float:left">
+                                                    <el-button type="info" size="mini" class="button">向右</el-button>
+                                                </div>
                                             </el-row>
-                                            <el-row class="switch">
-                                                <el-col :span="12"><span>设备名称：</span>
-                                                    <el-tag type="primary">{{item.Name}}</el-tag>
-                                                </el-col>
-                                                <el-col :span="12">
-                                                    <span>状态：</span>
-                                                    <el-tag type="primary" v-if="item.value!=null">
-                                                        {{item.value}}
-                                                    </el-tag>
-                                                    <el-switch v-model="item.IsOpen" on-text="打开" off-text="关闭" on-color="#13ce66" off-color="#ff4949" @change="change(ClassId,item)"
-                                                        v-if="item.Type<=5 || item.Type==12">
-                                                    </el-switch>
-                                                    <el-tag type="primary" v-if="item.Type>5&&item.Type<8">{{item.IsOpen?'正常':'异常'}}</el-tag>
-                                                </el-col>
+                                            <el-button type="info" size="mini" class="button" @click="fullScreen(remote1)">全屏</el-button>
+                                        </div>
+                                    </el-card>
+                                </el-row>
+                            </el-col>
+                            <el-col :span="5" :offset="1">
+                                <el-row>
+                                    <el-card :body-style="{ padding: '10px' }">
+                                        <div class="body">
+                                            <object id="remote1" name="remote1" classid="clsid:1E125331-B4E3-4EE3-B3C1-24AD1A3E5DEB" WIDTH="320" HEIGHT="311">
+                                      <strong style="color:red; font-size:20px"> 未安装插件，请<a href='http://cn-download.eyecloud.so/download/application/ipcamax.exe'>点击这里</a>下载安装</strong>
+                                    </object>
+                                        </div>
+                                        <div style="padding: 10px;">
+                                            <el-row>
+                                                <div @mousedown="setAction(remote2,0,31)" @mouseup="setAction(remote2,-1,0)" style="float:left;margin-right: 20px">
+                                                    <el-button type="info" size="mini" class="button">向上</el-button>
+                                                </div>
+                                                <div @mousedown="setAction(remote2,3,31)" @mouseup="setAction(remote2,-1,0)" style="float:left;margin-right: 20px">
+                                                    <el-button type="info" size="mini" class="button">向下</el-button>
+                                                </div>
+                                                <div @mousedown="setAction(remote2,1,31)" @mouseup="setAction(remote2,-1,0)" style="float:left;margin-right: 20px">
+                                                    <el-button type="info" size="mini" class="button">向左</el-button>
+                                                </div>
+
+                                                <div @mousedown="setAction(remote2,2,31)" @mouseup="setAction(remote2,-1,0)" style="float:left">
+                                                    <el-button type="info" size="mini" class="button">向右</el-button>
+                                                </div>
                                             </el-row>
-                                        </el-col>
-                                    </el-row>
-                                </el-card>
+                                            <el-button type="info" size="mini" class="button" @click="fullScreen(remote2)">全屏</el-button>
+                                        </div>
+                                    </el-card>
+                                </el-row>
                             </el-col>
-                        </el-collapse-item>
-                        <el-collapse-item title="环境信息" name="2">
-                            <el-col :span="5" v-for="(item, index) in Analog" :key="index" :offset="index%4==0?0:index > 0 ? 1 : 0" class="text item">
-                                <el-card class="box-card">
-                                    <div class="text item">
-                                        <span>设备名称：</span>
-                                        <el-tag type="primary">{{item.Name}}</el-tag>
-                                        <span>状态：</span>
-                                        <el-tag :type="item.Online=='OnLine'?'success':'danger'">{{item.Online}}</el-tag>
-                                    </div>
-                                    <div><span>设备信息：</span>
-                                        <el-tag type="primary">{{item.value}}</el-tag>
-                                    </div>
-                                </el-card>
-                            </el-col>
-                        </el-collapse-item>
-                    </el-collapse>
-                </el-row>
+                        </el-row>
+                    </el-collapse-item>
+                </el-collapse>
             </el-row>
         </div>
     </div>
@@ -71,47 +155,73 @@
 </template>
 <script>
     import config from '../js/config.js'
-    import { mapActions, mapGetters } from 'vuex'
+    import { mapActions, mapGetters, mapState } from 'vuex'
     export default {
-        created() {
+        //页面创建时触发
+        mounted() {
+
+        },
+        //进入页面时触发
+        activated() {
+            this.remote1 = remote;
+            this.remote2 = remote1;
+            this.InitIpCarema(this.remote1, 'VSTA396906EZKMT', 5);
+            this.InitIpCarema(this.remote2, 'VSTA396908FLVYJ', 6)
             this.Logging = true;
             this.request();
             this.time = setInterval(this.request, 90000);
+            if (this.collegeName == '') {
+                this.$store.commit('collegeName', localStorage.getItem('collegeName'))
+            }
+            if (this.layerName == '') {
+                this.$store.commit('layerName', localStorage.getItem('layerName'))
+            }
         },
         computed: mapGetters(['collegeName', 'layerName']),
+        //开始路由跳转时触发
         beforeRouteLeave: (to, from, next) => {
             next();
         },
-        destroyed() {
-            clearInterval(this.time);
-            this.time = null;
-            console.log(111);
+        //离开页面时触发
+        deactivated() {
+            try {
+                console.log('销毁了')
+                clearInterval(this.time);
+                
+                this.time = null;
+                remote1.ClearDevs(); //清除网络摄像机参数
+                remote2.ClearDevs(); //清除网络摄像机参数
+            }
+            catch (exception) {
+                return;
+            }
+
         },
         data() {
             return {
                 Count: 0,
                 jsondata: {},
                 SonserList: [], //所有传感器
-                Digitals: [],   //数字量传感器
-                Analog: [],     //模拟量传感器
                 Name: '',       //教室名称
                 ClassId: '',
-                token: '',
-                Logging: true,
+                Logging: false,
                 Imgs: config.Imgs,
-                activeNames: ['2'],
+                activeNames: ['3'],
                 time: {},
-
+                SonserExcList: [],
+                preActTime: 0,
+                bNeedStop: false,
+                remote1: {},
+                remote2: {}
             }
         },
         methods: {
             request: function () {
-                var token = localStorage.token;
-                this.token = token;
                 var classId = this.$route.params.classId;
-                var params = 'classroom=' + classId + '&Access=' + token;
+                var params = 'classroom=' + classId
                 this.$http.post(
                     config.SearchAll,
+                    //config.SearchTest,
                     //'/data.json',
                     params
                 ).then(function (res) {
@@ -122,7 +232,7 @@
                         this.Name = this.jsondata.Name;
                         this.ClassId = this.jsondata.Id;
                         this.Logging = false;
-                        this.Init(this.SonserList);
+                        this.SonserExcList = this.jsondata.AbnormalSonserList;
                     } else {
                         this.$message({
                             message: res.data.Message,
@@ -141,11 +251,15 @@
                     })
                 }.bind(this));
             },
+
             change(ClassId, item) {     //改变传感器状态
-                var token = localStorage.token;
-                var url = config.Apis[parseInt(item.Type)];
-                var onoff = item.IsOpen ? 'close' : 'open';
-                var params = 'classroom=' + ClassId + '&nodeAdd=' + item.Id + '&onoff=' + onoff + '&Access=' + token
+
+                var url = config.Apis[parseInt(item.Type)]; //传感器类型
+
+                var onoff = item.IsOpen ? 'close' : 'open'; //当前状态
+
+                var params = 'classroom=' + ClassId + '&nodeAdd=' + item.Id + '&onoff=' + onoff;
+
                 this.$http.post(url,
                     params
                 ).then(function (res) {
@@ -156,6 +270,7 @@
                             duration: 1500,
                             type: 'success'
                         });
+
                     } else {
                         this.$message({
                             message: '操作失败',
@@ -169,18 +284,70 @@
                     console.log(err)
                 });
             },
-            Init(SonserList) {
-                this.Digitals = [];
-                this.Analog = [];
-                for (var item in SonserList) {
-                    if (SonserList[item].Type <= 8) {
-                        this.Digitals.push(SonserList[item]);
-                    } else {
-                        this.Analog.push(SonserList[item]);
-                    }
+            InitIpCarema(dev, devIP, channelId) {     //初始化摄像头数据
+                let VER_AX_LOCALE = "1.1.15.174"
+                let szDevIP = devIP//"VSTA396906EZKMT" //VSTA396908FLVYJ
+                let nPort = 81      //端口
+                let szAuthAcc = "admin", szAuthPwd = "888888"   //账号密码
+                let szDevName = "网络摄像头1"    //摄像机名称
+                let nDevType = 922  //设备类型
+                let bInLan = 1      //whether in LAN,1:LAN, 0：WAN
+                let nImgW = 100
+                let nImgH = 100
+                let nChannelID = channelId  //通道数，第一个通道为1，后面的依此类推
+                try {
+                    dev.ClearDevs(); //清除网络摄像机参数
                 }
-            }
+                catch (exception) {
+                    return;
+                }
+                dev.Lan = 'cn'   //语言    cn -> chinese  en -> english
+                dev.ShowOSDName = 1
+                dev.Width = nImgW      //width of the window
+                dev.Height = nImgH    //height of the window
+                dev.ShowToolBar = 0 //显示工具栏
+                dev.ShowFPS = 0
+                dev.ShowRate = 0
+                dev.SavePath = 'E:\\'
+                dev.AddDev4(nDevType, bInLan, szDevIP, nPort, szDevName, szAuthAcc, szAuthPwd, nChannelID)
+                dev.Listen = 1         // 是否监听声音
+                dev.TurnImg = 0     //视频图像是否倒转。
+                dev.ConnectAll();        //连接网络摄像机
+                //remote.Start();
+            },
+            stopRec(dev) {
+                dev.StopRec()
+            },
+            fullScreen(dev) {
+                console.log(dev)
+                dev.FullScreen();
+            },
+            //set action and send to ipcam
+            setAction(dev, action, time) {
+                if ((action == -1) && (!this.bNeedStop))
+                    return 0;
 
+                var now_time = new Date();
+                //alert(now_time - this.preActTime);
+                if ((this.preActTime > 0) && (now_time - this.preActTime < 300)) {
+                    if (action == -1) {
+                        setTimeout(this.StopAction, 500, dev);
+                        return 0;
+                    }
+                    else
+                        return 0;
+                }
+
+                dev.PTZ(1, 1, action, time, 0, 0);
+                //Set pause time  
+                this.bNeedStop = action != -1;
+                this.preActTime = now_time;
+            },
+            StopAction(dev) {
+                //	alert("a");
+                dev.PTZ(1, 1, -1, 0, 0, 0);
+                this.bNeedStop = false;
+            }
         }
     }
 
@@ -191,6 +358,16 @@
         border-radius: 5px;
         margin-right: 5px;
         display: block;
+    }
+
+    OBJECT {
+        width: 242px;
+        height: 230px;
+        border-radius: 5px;
+    }
+
+    .body {
+        border-radius: 5px;
     }
 
     .bl-1 {

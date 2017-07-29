@@ -7,11 +7,13 @@
           <SmartNav></SmartNav>
         </el-col>
         <el-col :span="21">
-          <transition name="slide-down">
-            <!-- <keep-alive> -->
+          <el-collapse-transition>
+            <!-- <transition name="slide-down"> -->
+            <keep-alive>
               <router-view></router-view>
-            <!-- </keep-alive> -->
-          </transition>
+            </keep-alive>
+          </el-collapse-transition>
+          <!-- </transition> -->
         </el-col>
       </el-row>
     </main>
@@ -22,16 +24,13 @@
   import SmartHeader from './components/header.vue'
   import SmartNav from './components/Nav.vue'
   export default {
-    components: {
+    components: { //注册组件
       SmartHeader,
       SmartNav
     },
     data() {
       return {
       }
-    },
-    methods: {
-
     }
   }
 
@@ -47,6 +46,7 @@
     border-radius: 4px;
     padding-left: 15px;
     color: #fff;
+    box-sizing: border-box;
   }
 
   #header .el-row {

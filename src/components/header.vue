@@ -9,10 +9,9 @@
             <el-col :span="4">
                 <div>
                     <h2>
-                        <form>
-                            <el-input placeholder="请输入教室名称" icon="search" v-model="value" @keyup.submite.prevent="submite()">
-                            </el-input>
-                        </form>
+                        <!-- <el-input placeholder="请输入教室名称" icon="search" v-model="value" @keyup.enter.native="goClass(value)">
+                        </el-input> -->
+                        <el-autocomplete width="200px" v-model="value" :fetch-suggestions="querySearchAsync" placeholder="请输入教室名称或编号" @select="handleSelect"></el-autocomplete>
                     </h2>
                 </div>
             </el-col>
@@ -27,7 +26,9 @@
     </header>
 </template>
 <script>
+    import config from '../js/config.js'
     import { mapGetters, mapActions } from 'vuex'
+
     export default {
         data() {
             return {
@@ -43,8 +44,19 @@
             goLogin() {
                 this.$router.push({ path: '/Login' });
             },
-            submite() {
-                console.log(12);
+            querySearchAsync(queryString, cb) {
+                if (queryString) {
+                    this.$http.get(
+                        config.SearchClassListByNameOrNo + '?name=' + queryString,
+                    ).then(function (res) {
+                        cb(res.data)
+                    }).catch(function (err) {
+                        console.log('err', err)
+                    })
+                }
+            },
+            handleSelect(item) {
+                this.$router.push({ path: '/classList/classDetail/' + item.F_RoomNo });
             }
         },
         computed: mapGetters(['filtersClass'])

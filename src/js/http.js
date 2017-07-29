@@ -1,3 +1,4 @@
+//目前没用到
 import axios from 'axios'
 import config from './config'
 var $http = {

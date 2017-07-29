@@ -9,12 +9,16 @@ import RouterConfig from './js/router.config'
 import App from './App.vue'
 import AutoFocus from './js/autoFocus'
 Vue.use(AutoFocus)
-// axios.defaults.timeout = 5000; //响应时间
+axios.defaults.timeout = 5000; //响应时间
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'; //配置请求头
 
 axios.interceptors.request.use((config) => {
   //在发送请求之前做某件事
-  //store.commit('showLoading');
+  if (config.data != null) {  //在请求参数后面添加参数
+    config.data += '&Access=' + localStorage.getItem('token')
+  } else {
+    config.data = 'Access=' + localStorage.getItem('token')
+  }
   return config;
 }, (error) => {
   return Promise.reject(error);
@@ -30,7 +34,7 @@ axios.interceptors.response.use((res) => {
 
 Vue.prototype.$http = axios
 
-Vue.use(ElementUI)
+Vue.use(ElementUI)  
 Vue.use(VueRouter)
 
 const router = new VueRouter({

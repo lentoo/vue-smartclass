@@ -36,7 +36,7 @@
                         </el-col>
                     </el-collapse-item>
                     <el-collapse-item title="异常设备" name="2">
-                        <el-table :data="tableData" border style="width: 100%">
+                        <el-table :data="tableData" border style="width: 100%" stripe="stripe">
                             <el-table-column prop="className" label="教室名称" width="180">
                             </el-table-column>
                             <el-table-column prop="classNo" label="教室编号" width="180">
@@ -48,8 +48,8 @@
                             </el-table-column>
                             <el-table-column label="操作">
                                 <template scope="scope">
-                                    <el-button type="info" size="small">试着打开</el-button>
-                                    <el-button type="info" size="small">试着关闭</el-button>
+                                    <el-button type="info" size="small" v-if="null">试着打开</el-button>
+                                    <el-button type="info" size="small" v-if="null">试着关闭</el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -62,13 +62,22 @@
 <script>
     import config from '../js/config.js'
     export default {
+        //实例挂载完毕触发
         mounted() {
+
+        },
+        //进入页面触发
+        activated() {
             this.collegeName = this.$route.query.Name
             this.floorName = this.$route.query.floorName
             this.Init();
             this.request();
-        },
 
+        },
+        //离开页面触发
+        deactivated() {
+
+        },
         data() {
             return {
                 collegeName: '',
@@ -77,12 +86,15 @@
                 SonserList: [], //传感器列表
                 jsondata: [],   //请求数据
                 floorName: '',
-                tableData: []    //表格数据
+                tableData: [],    //表格数据
+                stripe: true
             }
         },
         methods: {
             //初始化传感器可控制设备
+
             Init() {
+                this.SonserList = [];
                 this.SonserList.push({
                     Name: '灯',
                     Type: 1,
@@ -106,14 +118,14 @@
             },
             //请求所有楼栋设备信息
             request() {
-                var token = localStorage.token
-                var params = 'buildingName=' + this.collegeName + '&Access=' + token
+                var params = 'buildingName=' + this.collegeName
                 var self = this
                 this.$http.get(
-                    '/data1.json'
-                    //config.SearchBuildingAllRoomEquipmentInfo
+                    ///'/data1.json'
+                    config.SearchBuildingAllRoomEquipmentInfo
                     , params
                 ).then(function (res) {
+                    //console.log(res.data);
                     self.jsondata = res.data
                     self.InitTableData(self.jsondata)
                 }).catch(function (err) {
@@ -122,9 +134,6 @@
             },
             //控制开关
             allControl(item, onoff) {
-
-                var token = localStorage.token;
-
                 let floorName = this.floorName != null ? this.floorName : '';
                 let api = config.ControlBuildingEquipment;
                 var params = 'buildingName=' + this.collegeName
@@ -132,9 +141,8 @@
                     api = config.ControlFloorEquipment
                     params += '&floorName=' + floorName
                 }
-                params += '&equipmentType=' + item.Type + '&onoff=' + onoff + '&Access=' + token;
+                params += '&equipmentType=' + item.Type + '&onoff=' + onoff
                 var self = this;
-
                 this.$http.post(
                     api,
                     params
@@ -150,13 +158,11 @@
             },
             //格式化表格数据
             InitTableData(data) {
-                console.log(data)
+                this.tableData = [];
                 for (var key in data) {
-                    for (var index in data[key].AppendData.SonserList) {    //教室
+                    for (var index in data[key].AppendData.AbnormalSonserList) {    //教室异常设备
                         var cn = data[key].AppendData;
-                        console.log(cn);
-                        console.log(data[key].AppendData.SonserList[index])
-                        var sonser = data[key].AppendData.SonserList[index]
+                        var sonser = data[key].AppendData.AbnormalSonserList[index]
                         this.tableData.push({
                             className: cn.Name,
                             classNo: cn.ClassNo,

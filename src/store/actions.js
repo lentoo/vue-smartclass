@@ -16,5 +16,10 @@ export default {
         payload
     }) => {
         commit('layerName')
+    },
+    flashName: ({
+        commit, payload
+    }) => {
+        commit('flashName')
     }
 }

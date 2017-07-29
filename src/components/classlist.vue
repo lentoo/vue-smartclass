@@ -15,7 +15,6 @@
     </div>
 </template>
 <script>
-    import axios from 'axios'
     import config from '../js/config.js'
     import { mapGetters, mapActions } from 'vuex'
     export default {
@@ -51,10 +50,10 @@
             //请求数据
             request() {
                 this.Logging = true;
-                var params = 'Access=' + localStorage.token
+
                 this.$http.post(
                     config.SearchAllClass,
-                    params
+
                 ).then(function (res) {
                     this.Logging = false;
                     this.Colleges = res.data;
@@ -84,6 +83,8 @@
                 if (data.ClassNo != null) { //点击的是不是具体教室
                     this.$store.commit('collegeName', data.CollegeName);
                     this.$store.commit('layerName', data.LayerName);
+                    localStorage.setItem('collegeName', data.CollegeName);   //持久化数据
+                    localStorage.setItem('layerName', data.LayerName);
                     this.$router.push({
                         path: '/classList/classDetail/' + data.Id,
                     })

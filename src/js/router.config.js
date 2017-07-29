@@ -3,6 +3,8 @@ import ClassDetail from '../components/classdetail.vue'
 import Login from '../components/Login.vue'
 import ControlCenter from '../components/ControlCenter.vue'
 import ControlDetail from '../components/ControlDetail.vue'
+
+//路由配置
 export default [
     { path: '/classList', component: ClassList },
     { path: '/classList/classDetail/:classId', component: ClassDetail },
