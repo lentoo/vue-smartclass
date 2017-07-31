@@ -8,7 +8,7 @@
                 <el-submenu index="1">
                     <template slot="title"><i class="el-icon-menu"></i>按楼栋控制</template>
                     <el-menu-item-group>
-                        <el-menu-item :index="Math.random()*1000+''" v-for="(val,i) in jsonData" :key="i" @click="goLDControl(val)">
+                        <el-menu-item :index="Math.random()*1000+''" v-for="(val,i) in jsonData" :key="i" @click="goBuildingControl(val)">
                             {{val.Name}}
                         </el-menu-item>
                     </el-menu-item-group>
@@ -19,7 +19,7 @@
                         <template slot="title">
                             {{val.Name}}
                         </template>
-                        <el-menu-item :index="Math.random()*1000+''" v-for="(v,index) in jsonData[i].Floors" :key="index" @click="goLCControl(v,val)">
+                        <el-menu-item :index="Math.random()*1000+''" v-for="(v,index) in jsonData[i].Floors" :key="index" @click="goLayerControl(v,val)">
                             {{v.Name}}
                         </el-menu-item>
                     </el-submenu>
@@ -41,9 +41,8 @@
                 }, {
                     'name': '按楼层控制'
                 }],
-                LDList: [],
                 jsonData: {},
-                uniqueOpened: true
+                uniqueOpened: true  //	是否只保持一个子菜单的展开
 
             };
         },
@@ -51,14 +50,15 @@
             request() {
                 var _this = this;
                 this.$http.post(
-                    config.SearchAllClass
+                    config.SearchAllClass       //请求所有教室数据
                 ).then(function (res) {
                     _this.jsonData = res.data;
                 }).catch(function (err) {
-                    console.log(err);
+                    console.log('err', err);
                 });
             },
-            goLDControl(item) { //触发楼栋选中事件                                                
+
+            goBuildingControl(item) { //触发楼栋选中事件                                                
                 var name = item.Name;
                 this.$router.push({
                     path: '/controlCenter/controlDetail', query: {
@@ -66,10 +66,7 @@
                     }
                 })
             },
-            goLCControl(children, parent) { //触发楼层选中事件
-                console.log(children)
-                console.log(parent)
-
+            goLayerControl(children, parent) { //触发楼层选中事件
                 this.$router.push({
                     path: '/controlCenter/controlDetail', query: {
                         Name: parent.Name,
@@ -81,7 +78,7 @@
     };
 
 </script>
-<style>
+<style scoped>
     .body {
         padding: 10px 0;
     }

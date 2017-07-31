@@ -92,7 +92,6 @@
         },
         methods: {
             //初始化传感器可控制设备
-
             Init() {
                 this.SonserList = [];
                 this.SonserList.push({
@@ -118,16 +117,33 @@
             },
             //请求所有楼栋设备信息
             request() {
-                var params = 'buildingName=' + this.collegeName
-                var self = this
-                this.$http.get(
-                    ///'/data1.json'
+                var params = 'buildingName=' + this.collegeName;
+                if (this.floorName != null) {
+                    params += '&layerName=' + this.floorName
+                }
+                var self = this;
+                this.$http.post(
+                    //'/data1.json'
                     config.SearchBuildingAllRoomEquipmentInfo
                     , params
                 ).then(function (res) {
-                    //console.log(res.data);
-                    self.jsondata = res.data
-                    self.InitTableData(self.jsondata)
+                    self.jsondata = res.data;
+                    
+                    if (self.floorName != null) {
+                        self.$notify({
+                            title: '消息',
+                            message: '当前楼层共有' + res.data.AppendData.Floors[0].ExceptionCount + '个异常设备',
+                            type: 'warning'
+                        });
+                    }else{
+                         self.$notify({
+                            title: '消息',
+                            message: '当前楼栋共有' + res.data.AppendData.ExceptionCount + '个异常设备',
+                            type: 'warning'
+                        });
+                    }
+
+                    self.InitTableData(self.jsondata.AppendData)
                 }).catch(function (err) {
                     console.log('err', err)
                 })
@@ -137,7 +153,7 @@
                 let floorName = this.floorName != null ? this.floorName : '';
                 let api = config.ControlBuildingEquipment;
                 var params = 'buildingName=' + this.collegeName
-                if (floorName != '') {
+                if (floorName !== '') {
                     api = config.ControlFloorEquipment
                     params += '&floorName=' + floorName
                 }
@@ -152,23 +168,25 @@
                         type: 'success'
                     });
                 }).catch(function (err) {
-                    console.log(err);
+                    console.log('err', err);
                     self.$message.error('操作异常，请刷新重试');
                 })
             },
             //格式化表格数据
             InitTableData(data) {
                 this.tableData = [];
-                for (var key in data) {
-                    for (var index in data[key].AppendData.AbnormalSonserList) {    //教室异常设备
-                        var cn = data[key].AppendData;
-                        var sonser = data[key].AppendData.AbnormalSonserList[index]
-                        this.tableData.push({
-                            className: cn.Name,
-                            classNo: cn.ClassNo,
-                            equiId: sonser.Id,
-                            equiName: sonser.Name
-                        })
+                for (var key in data.Floors) {                          //所有楼层
+                    for (var index in data.Floors[key].ClassRooms) {        //楼层下的所有教室
+                        var cn = data.Floors[key].ClassRooms[index];
+                        for (let i in cn.AbnormalSonserList) {                  //教室下的所有异常设备
+                            var sonser = cn.AbnormalSonserList[i]
+                            this.tableData.push({                                   //将异常设备数据添加到表格数据中
+                                className: cn.Name,
+                                classNo: cn.ClassNo,
+                                equiId: sonser.Id,
+                                equiName: sonser.Name
+                            })
+                        }
                     }
                 }
             }

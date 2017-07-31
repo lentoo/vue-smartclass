@@ -9,7 +9,7 @@ export default {
         commit,
         payload
     }) => {
-        commit('collegeName')
+        commit('BuildingName')
     },
     layerName: ({
         commit,

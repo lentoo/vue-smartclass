@@ -34,6 +34,7 @@ axios.interceptors.response.use((res) => {
 
 Vue.prototype.$http = axios
 
+
 Vue.use(ElementUI)  
 Vue.use(VueRouter)
 

@@ -1,22 +1,22 @@
 import getters from './getter'
 const state = {
     classFilter: '',
-    collegeName: '',
+    BuildingName: '',
     layerName: ''
 }
 const mutations = {
     classFilter(state, payload) {
         state.classFilter = payload;
     },
-    collegeName(state, payload) {
-        state.collegeName = payload;
+    BuildingName(state, payload) {
+        state.BuildingName = payload;
     },
     layerName(state, payload) {
         state.layerName = payload;
     },
     flashName(state, payload) {
         console.log(payload)
-        state.collegeName = payload;
+        state.BuildingName = payload;
         // state.layerName = payload.layerName;
     }
 }

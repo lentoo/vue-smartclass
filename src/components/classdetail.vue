@@ -3,7 +3,7 @@
         <div id="class-detail" v-loading="Logging" element-loading-text="拼命加载中">
             <h1 class=".h40">
                 <el-breadcrumb separator="/">
-                    <el-breadcrumb-item><span v-text="collegeName"></span></el-breadcrumb-item>
+                    <el-breadcrumb-item><span v-text="BuildingName"></span></el-breadcrumb-item>
                     <el-breadcrumb-item><span v-text="layerName"></span></el-breadcrumb-item>
                     <el-breadcrumb-item><span v-text="Name"></span></el-breadcrumb-item>
                 </el-breadcrumb>
@@ -33,8 +33,8 @@
                                             </el-col>
                                             <el-col :span="12">
                                                 <span>状态：</span>
-                                                <el-tag type="primary" v-if="item.value!=null">
-                                                    {{item.value}}
+                                                <el-tag type="primary" v-if="item.Value!=null">
+                                                    {{item.Value}}
                                                 </el-tag>
                                                 <el-switch v-model="item.IsOpen" on-text="打开" off-text="关闭" on-color="#13ce66" off-color="#ff4949" @change="change(ClassId,item)"
                                                     v-if="(item.Type<=5 || item.Type==12) && (item.Online=='OnLine')">
@@ -171,13 +171,13 @@
             this.request();
             this.time = setInterval(this.request, 90000);
             if (this.collegeName == '') {
-                this.$store.commit('collegeName', localStorage.getItem('collegeName'))
+                this.$store.commit('BuildingName', localStorage.getItem('BuildingName'))
             }
             if (this.layerName == '') {
                 this.$store.commit('layerName', localStorage.getItem('layerName'))
             }
         },
-        computed: mapGetters(['collegeName', 'layerName']),
+        computed: mapGetters(['BuildingName', 'layerName']),
         //开始路由跳转时触发
         beforeRouteLeave: (to, from, next) => {
             next();
@@ -185,9 +185,8 @@
         //离开页面时触发
         deactivated() {
             try {
-                console.log('销毁了')
                 clearInterval(this.time);
-                
+
                 this.time = null;
                 remote1.ClearDevs(); //清除网络摄像机参数
                 remote2.ClearDevs(); //清除网络摄像机参数

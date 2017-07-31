@@ -1,4 +1,4 @@
-const Host = 'http://localhost:50287/api';       //服务地地址
+const Host = 'http://localhost:8080/api';       //服务地地址
 const Login = Host + '/Logon'                   //登录接口
 const Lamp = Host + '/Home/SetLamp';            //控制灯接口
 const SearchAll = Host + '/Home/SearchAll'      //查询某个教室设备信息接口

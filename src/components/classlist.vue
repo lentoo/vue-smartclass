@@ -55,6 +55,7 @@
                     config.SearchAllClass,
 
                 ).then(function (res) {
+
                     this.Logging = false;
                     this.Colleges = res.data;
                     this.Collegess = this.Init(this.Colleges);
@@ -80,10 +81,11 @@
             },
             //树节点点击事件
             handleNodeClick(data) {
+                console.log(data)
                 if (data.ClassNo != null) { //点击的是不是具体教室
-                    this.$store.commit('collegeName', data.CollegeName);
+                    this.$store.commit('BuildingName', data.BuildingName);
                     this.$store.commit('layerName', data.LayerName);
-                    localStorage.setItem('collegeName', data.CollegeName);   //持久化数据
+                    localStorage.setItem('BuildingName', data.BuildingName);   //持久化数据
                     localStorage.setItem('layerName', data.LayerName);
                     this.$router.push({
                         path: '/classList/classDetail/' + data.Id,
