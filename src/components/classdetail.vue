@@ -11,6 +11,7 @@
             <el-row class="detail-body">
                 <el-collapse accordion v-model="activeNames">
                     <el-collapse-item title="设备列表" name="1">
+                        <!--遍历所有传感器集合  -->
                         <el-col :span="8" v-for="(item, index) in SonserList" :key="index">
                             <el-card :body-style="{ padding: '15px 15px 0 15px'}" style="margin-bottom:5px;padding-bottom:0;height:114px;margin-right:10px;">
                                 <el-row>
@@ -38,7 +39,9 @@
                                                 </el-tag>
                                                 <el-switch v-model="item.IsOpen" on-text="打开" off-text="关闭" on-color="#13ce66" off-color="#ff4949" @change="change(ClassId,item)"
                                                     v-if="(item.Type<=5 || item.Type==12) && (item.Online=='OnLine')">
+                                                    <!--类型小于等于5的和类型等于12的设备是可以开关控制的设备，并且是在线状态 -->
                                                 </el-switch>
+                                                <!-- 类型大于5和小于8的，是数字量类型，不可控制设备 -->
                                                 <el-tag type="primary" v-if="item.Type>5 && item.Type<8">{{item.IsOpen?'正常':'异常'}}</el-tag>
                                             </el-col>
                                         </el-row>
@@ -52,11 +55,12 @@
                             <el-alert title="" description="当前该教室没有异常设备">
                             </el-alert>
                         </p>
+                        <!--遍历所有异常传感器集合   -->
                         <el-col :span="8" v-for="(item, index) in SonserExcList" :key="index">
                             <el-card :body-style="{ padding: '15px 15px 0 15px'}" style="margin-bottom:5px;padding-bottom:0;height:114px;margin-right:10px;">
                                 <el-row>
                                     <el-col :span="5">
-                                        <img :src="'/src/assets/images/'+Imgs[item.Type]!=null?Imgs[item.Type]:'default.jpg'" class="image" />
+                                        <img :src="'/src/assets/images/'+(Imgs[item.Type]!=null?Imgs[item.Type]:'default.jpg')" class="image" />
                                         <!-- <img :src="'/src/assets/images/default.jpg'" class="image" /> -->
                                     </el-col>
                                     <el-col :span="18" :offset="1">
@@ -155,28 +159,30 @@
 </template>
 <script>
     import config from '../js/config.js'
-    import { mapActions, mapGetters, mapState } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
     export default {
         //页面创建时触发
         mounted() {
-
+            this.Logging = true;
+            this.request();
         },
         //进入页面时触发
         activated() {
             this.remote1 = remote;
             this.remote2 = remote1;
             this.InitIpCarema(this.remote1, 'VSTA396906EZKMT', 5);
-            this.InitIpCarema(this.remote2, 'VSTA396908FLVYJ', 6)
-            this.Logging = true;
-            this.request();
+            this.InitIpCarema(this.remote2, 'VSTA396908FLVYJ', 6);
+            
+
             this.time = setInterval(this.request, 90000);
-            if (this.collegeName == '') {
+            if (this.BuildingName == '') {
                 this.$store.commit('BuildingName', localStorage.getItem('BuildingName'))
             }
             if (this.layerName == '') {
                 this.$store.commit('layerName', localStorage.getItem('layerName'))
             }
         },
+
         computed: mapGetters(['BuildingName', 'layerName']),
         //开始路由跳转时触发
         beforeRouteLeave: (to, from, next) => {
@@ -205,7 +211,7 @@
                 ClassId: '',
                 Logging: false,
                 Imgs: config.Imgs,
-                activeNames: ['3'],
+                activeNames: ['2'],
                 time: {},
                 SonserExcList: [],
                 preActTime: 0,
@@ -216,7 +222,9 @@
         },
         methods: {
             request: function () {
+                this.Logging = true;
                 var classId = this.$route.params.classId;
+                if (classId === undefined) return;
                 var params = 'classroom=' + classId
                 this.$http.post(
                     config.SearchAll,
@@ -250,7 +258,6 @@
                     })
                 }.bind(this));
             },
-
             change(ClassId, item) {     //改变传感器状态
 
                 var url = config.Apis[parseInt(item.Type)]; //传感器类型
@@ -347,6 +354,10 @@
                 dev.PTZ(1, 1, -1, 0, 0, 0);
                 this.bNeedStop = false;
             }
+        },
+        //监听路由变化，重新请求
+        watch: {
+            '$route': 'request'
         }
     }
 
@@ -358,7 +369,9 @@
         margin-right: 5px;
         display: block;
     }
-
+    .el-col {
+        padding-bottom: 8px;
+    }
     OBJECT {
         width: 242px;
         height: 230px;

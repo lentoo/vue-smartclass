@@ -27,17 +27,10 @@
 </template>
 <script>
     import config from '../js/config.js'
-    import { mapGetters, mapActions } from 'vuex'
-
     export default {
         data() {
             return {
                 value: ''
-            }
-        },
-        watch: {
-            value() {
-                this.$store.commit('classFilter', this.value)
             }
         },
         methods: {
@@ -56,10 +49,9 @@
                 }
             },
             handleSelect(item) {
-                this.$router.push({ path: '/classList/classDetail/' + item.F_RoomNo });
+                this.$router.replace({ path: '/classList/classDetail/' + item.F_RoomNo });
             }
         },
-        computed: mapGetters(['filtersClass'])
     }
 
 </script>

@@ -6,7 +6,7 @@
             </h1>
             <div class="class-body">
                 <el-row>
-                    <el-tree :data="Collegess" :props="defaultProps" :accordion="true" @node-click="handleNodeClick" :filter-node-method="filterNode"
+                    <el-tree :data="Collegess" :props="defaultProps" :accordion="true" @node-click="handleNodeClick"
                         ref="tree2">
                     </el-tree>
                 </el-row>
@@ -20,12 +20,6 @@
     export default {
         mounted() {
             this.request();
-        },
-        computed: mapGetters(['filtersClass']),
-        watch: {
-            filtersClass(val) {
-                this.$refs.tree2.filter(val);
-            }
         },
         data() {
             return {
@@ -41,12 +35,7 @@
                 Collegess: []
             }
         },
-        methods: {
-            // 树节点过滤
-            filterNode(value, data) {
-                if (!value) return true;
-                return data.Name.indexOf(value) !== -1;
-            },
+        methods: {           
             //请求数据
             request() {
                 this.Logging = true;

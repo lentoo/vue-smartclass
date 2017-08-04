@@ -1,333 +1,355 @@
-[
-    {
-        "AppendData": {
-            "Id": "1234",
-            "Name": "物联网实训室",
-            "CollegeName": null,
-            "LayerName": null,
-            "ClassNo": "A213",
-            "SonserList": [
+{
+    "AppendData": [
+        {
+            "Name": "电子与信息工程学院",
+            "Floors": [
                 {
-                    "IsOpen": false,
-                    "Id": "18",
-                    "Name": "照明灯",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 1,
-                    "Controllable": true
+                    "Name": "一楼",
+                    "ClassRooms": [],
+                    "AbnormalEquipment": false,
+                    "ExceptionCount": 0
                 },
                 {
-                    "IsOpen": false,
-                    "Id": "15",
-                    "Name": "门",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 2,
-                    "Controllable": true
+                    "Name": "二楼",
+                    "ClassRooms": [
+                        {
+                            "Id": "1234",
+                            "Name": "物联网实训室",
+                            "BuildingName": "电子与信息工程学院",
+                            "LayerName": "二楼",
+                            "ClassNo": "A213",
+                            "SonserList": [
+                                {
+                                    "Id": "18",
+                                    "Name": "照明灯",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 1,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "15",
+                                    "Name": "门",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 2,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "11",
+                                    "Name": "窗帘",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 3,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "a",
+                                    "Name": "窗户",
+                                    "Online": "OnLine",
+                                    "State": "停止",
+                                    "Type": 4,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "10",
+                                    "Name": "窗户",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 4,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "13",
+                                    "Name": "人体",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 6,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "12",
+                                    "Name": "气体",
+                                    "Online": "OnLine",
+                                    "State": "7,无此状态码",
+                                    "Type": 7,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "d",
+                                    "Name": "温度",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 9,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "d",
+                                    "Name": "湿度",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 9,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "e",
+                                    "Name": "温度",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 9,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "e",
+                                    "Name": "湿度",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 9,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "19",
+                                    "Name": "PM2.5",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 11,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "16",
+                                    "Name": "空调",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 12,
+                                    "Controllable": true
+                                }
+                            ],
+                            "AbnormalSonserList": [],
+                            "NormalSonserList": [
+                                {
+                                    "Id": "18",
+                                    "Name": "照明灯",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 1,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "15",
+                                    "Name": "门",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 2,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "11",
+                                    "Name": "窗帘",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 3,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "a",
+                                    "Name": "窗户",
+                                    "Online": "OnLine",
+                                    "State": "停止",
+                                    "Type": 4,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "10",
+                                    "Name": "窗户",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 4,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "13",
+                                    "Name": "人体",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 6,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "12",
+                                    "Name": "气体",
+                                    "Online": "OnLine",
+                                    "State": "7,无此状态码",
+                                    "Type": 7,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "d",
+                                    "Name": "温度",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 9,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "d",
+                                    "Name": "湿度",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 9,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "e",
+                                    "Name": "温度",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 9,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "e",
+                                    "Name": "湿度",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 9,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "19",
+                                    "Name": "PM2.5",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 11,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "16",
+                                    "Name": "空调",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 12,
+                                    "Controllable": true
+                                }
+                            ],
+                            "AbnormalEquipment": false,
+                            "ExceptionCount": 0
+                        }
+                    ],
+                    "AbnormalEquipment": false,
+                    "ExceptionCount": 0
                 },
                 {
-                    "IsOpen": false,
-                    "Id": "11",
-                    "Name": "窗帘",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 3,
-                    "Controllable": true
+                    "Name": "三层",
+                    "ClassRooms": [
+                        {
+                            "Id": "1235",
+                            "Name": "嵌入式办公室",
+                            "BuildingName": "电子与信息工程学院",
+                            "LayerName": "三层",
+                            "ClassNo": "A304",
+                            "SonserList": [
+                                {
+                                    "Id": "1",
+                                    "Name": "照明灯",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 1,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "2",
+                                    "Name": "光照",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 10,
+                                    "Controllable": false
+                                },
+                                {
+                                    "Id": "3",
+                                    "Name": "空调",
+                                    "Online": "OffLine",
+                                    "State": "关闭",
+                                    "Type": 12,
+                                    "Controllable": true
+                                }
+                            ],
+                            "AbnormalSonserList": [
+                                {
+                                    "Id": "3",
+                                    "Name": "空调",
+                                    "Online": "OffLine",
+                                    "State": "关闭",
+                                    "Type": 12,
+                                    "Controllable": true
+                                }
+                            ],
+                            "NormalSonserList": [
+                                {
+                                    "Id": "1",
+                                    "Name": "照明灯",
+                                    "Online": "OnLine",
+                                    "State": "关闭",
+                                    "Type": 1,
+                                    "Controllable": true
+                                },
+                                {
+                                    "Id": "2",
+                                    "Name": "光照",
+                                    "Online": "OnLine",
+                                    "State": "打开",
+                                    "Type": 10,
+                                    "Controllable": false
+                                }
+                            ],
+                            "AbnormalEquipment": true,
+                            "ExceptionCount": 1
+                        }
+                    ],
+                    "AbnormalEquipment": true,
+                    "ExceptionCount": 1
                 },
                 {
-                    "IsOpen": false,
-                    "Id": "a",
-                    "Name": "窗户",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 4,
-                    "Controllable": true
-                },
-                {
-                    "IsOpen": false,
-                    "Id": "10",
-                    "Name": "窗户",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 4,
-                    "Controllable": true
-                },
-                {
-                    "IsOpen": true,
-                    "Id": "13",
-                    "Name": "人体",
-                    "Online": "OffLine",
-                    "State": "不在线",
-                    "Type": 6,
-                    "Controllable": false
-                },
-                {
-                    "IsOpen": true,
-                    "Id": "12",
-                    "Name": "气体",
-                    "Online": "OffLine",
-                    "State": "不在线",
-                    "Type": 7,
-                    "Controllable": false
-                },
-                {
-                    "value": "29.4℃",
-                    "Id": "d",
-                    "Name": "温度",
-                    "Online": "OnLine",
-                    "State": "打开",
-                    "Type": 9,
-                    "Controllable": false
-                },
-                {
-                    "value": "67.6%",
-                    "Id": "d",
-                    "Name": "湿度",
-                    "Online": "OnLine",
-                    "State": "打开",
-                    "Type": 9,
-                    "Controllable": false
-                },
-                {
-                    "value": "0℃",
-                    "Id": "e",
-                    "Name": "温度",
-                    "Online": "OffLine",
-                    "State": "关闭",
-                    "Type": 9,
-                    "Controllable": false
-                },
-                {
-                    "value": "0%",
-                    "Id": "e",
-                    "Name": "湿度",
-                    "Online": "OffLine",
-                    "State": "关闭",
-                    "Type": 9,
-                    "Controllable": false
-                },
-                {
-                    "value": "26.55µg/m³",
-                    "Id": "19",
-                    "Name": "PM2.5",
-                    "Online": "OnLine",
-                    "State": "打开",
-                    "Type": 11,
-                    "Controllable": false
-                },
-                {
-                    "value": "17℃",
-                    "Id": "16",
-                    "Name": "空调",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 12,
-                    "Controllable": true
+                    "Name": "四层",
+                    "ClassRooms": [],
+                    "AbnormalEquipment": false,
+                    "ExceptionCount": 0
                 }
             ],
-            "AbnormalSonserList": [
-                {
-                    "IsOpen": true,
-                    "Id": "13",
-                    "Name": "人体",
-                    "Online": "OffLine",
-                    "State": "不在线",
-                    "Type": 6,
-                    "Controllable": false
-                },
-                {
-                    "IsOpen": true,
-                    "Id": "12",
-                    "Name": "气体",
-                    "Online": "OffLine",
-                    "State": "不在线",
-                    "Type": 7,
-                    "Controllable": false
-                },
-                {
-                    "value": "0℃",
-                    "Id": "e",
-                    "Name": "温度",
-                    "Online": "OffLine",
-                    "State": "关闭",
-                    "Type": 9,
-                    "Controllable": false
-                },
-                {
-                    "value": "0%",
-                    "Id": "e",
-                    "Name": "湿度",
-                    "Online": "OffLine",
-                    "State": "关闭",
-                    "Type": 9,
-                    "Controllable": false
-                }
-            ],
-            "NormalSonserList": [
-                {
-                    "IsOpen": false,
-                    "Id": "18",
-                    "Name": "照明灯",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 1,
-                    "Controllable": true
-                },
-                {
-                    "IsOpen": false,
-                    "Id": "15",
-                    "Name": "门",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 2,
-                    "Controllable": true
-                },
-                {
-                    "IsOpen": false,
-                    "Id": "11",
-                    "Name": "窗帘",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 3,
-                    "Controllable": true
-                },
-                {
-                    "IsOpen": false,
-                    "Id": "a",
-                    "Name": "窗户",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 4,
-                    "Controllable": true
-                },
-                {
-                    "IsOpen": false,
-                    "Id": "10",
-                    "Name": "窗户",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 4,
-                    "Controllable": true
-                },
-                {
-                    "value": "29.4℃",
-                    "Id": "d",
-                    "Name": "温度",
-                    "Online": "OnLine",
-                    "State": "打开",
-                    "Type": 9,
-                    "Controllable": false
-                },
-                {
-                    "value": "67.6%",
-                    "Id": "d",
-                    "Name": "湿度",
-                    "Online": "OnLine",
-                    "State": "打开",
-                    "Type": 9,
-                    "Controllable": false
-                },
-                {
-                    "value": "26.55µg/m³",
-                    "Id": "19",
-                    "Name": "PM2.5",
-                    "Online": "OnLine",
-                    "State": "打开",
-                    "Type": 11,
-                    "Controllable": false
-                },
-                {
-                    "value": "17℃",
-                    "Id": "16",
-                    "Name": "空调",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 12,
-                    "Controllable": true
-                }
-            ]
+            "AbnormalEquipment": true,
+            "ExceptionCount": 1
         },
-        "ExceptionCount": 4,
-        "Count": 13,
-        "NormalCount": 9,
-        "Status": true,
-        "ResultCode": 0,
-        "Message": "查询设备信息成功",
-        "ErrorData": null
-    },
-    {
-        "AppendData": {
-            "Id": "1235",
-            "Name": "嵌入式办公室",
-            "CollegeName": null,
-            "LayerName": null,
-            "ClassNo": "A304",
-            "SonserList": [
+        {
+            "Name": "机电工程学院",
+            "Floors": [
                 {
-                    "IsOpen": false,
-                    "Id": "1",
-                    "Name": "照明灯",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 1,
-                    "Controllable": true
-                },
-                {
-                    "value": "191 lx",
-                    "Id": "3",
-                    "Name": "光照",
-                    "Online": "OnLine",
-                    "State": "打开",
-                    "Type": 10,
-                    "Controllable": false
-                },
-                {
-                    "value": "26℃",
-                    "Id": "2",
-                    "Name": "空调",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 12,
-                    "Controllable": true
+                    "Name": "二层",
+                    "ClassRooms": [
+                        {
+                            "Id": null,
+                            "Name": null,
+                            "BuildingName": null,
+                            "LayerName": null,
+                            "ClassNo": null,
+                            "SonserList": null,
+                            "AbnormalSonserList": null,
+                            "NormalSonserList": null,
+                            "AbnormalEquipment": false,
+                            "ExceptionCount": 0
+                        }
+                    ],
+                    "AbnormalEquipment": false,
+                    "ExceptionCount": 0
                 }
             ],
-            "AbnormalSonserList": [],
-            "NormalSonserList": [
-                {
-                    "IsOpen": false,
-                    "Id": "1",
-                    "Name": "照明灯",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 1,
-                    "Controllable": true
-                },
-                {
-                    "value": "191 lx",
-                    "Id": "3",
-                    "Name": "光照",
-                    "Online": "OnLine",
-                    "State": "打开",
-                    "Type": 10,
-                    "Controllable": false
-                },
-                {
-                    "value": "26℃",
-                    "Id": "2",
-                    "Name": "空调",
-                    "Online": "OnLine",
-                    "State": "关闭",
-                    "Type": 12,
-                    "Controllable": true
-                }
-            ]
-        },
-        "ExceptionCount": 0,
-        "Count": 3,
-        "NormalCount": 3,
-        "Status": true,
-        "ResultCode": 0,
-        "Message": "查询设备信息成功",
-        "ErrorData": null
-    }
-]
+            "AbnormalEquipment": false,
+            "ExceptionCount": 0
+        }
+    ],
+    "ExceptionCount": 0,
+    "Count": 0,
+    "NormalCount": 0,
+    "Status": true,
+    "ResultCode": 0,
+    "Message": "查询成功",
+    "ErrorData": null
+}
